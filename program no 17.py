@@ -1,14 +1,27 @@
-def dfs(graph, start):
-    visited = set()
-    stack = [start]
-    while stack:
-        vertex = stack.pop()
-        if vertex not in visited:
-            visited.add(vertex)
-            print(vertex)
-            stack.extend(graph[vertex] - visited)
+graph = {
+  '5' : ['3','7'],
+  '3' : ['2', '4'],
+  '7' : ['8'],
+  '2' : [],
+  '4' : ['8'],
+  '8' : []
+}
+visited = set() 
+def dfs(visited, graph, node):  
+    if node not in visited:
+        print (node)
+        visited.add(node)
+        for neighbour in graph[node]:
+            dfs(visited, graph, neighbour)
+print("Following is the Depth-First Search")
+dfs(visited, graph, '5')
 
-# Example usage:
-if __name__ == '__main__':
-    graph = {0: [1, 2], 1: [2], 2: [0, 3], 3: [3]}
-    dfs(graph, 2)
+Sample Output :
+  
+Following is the Depth-First Search
+5
+3
+2
+4
+8
+7
